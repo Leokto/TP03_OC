@@ -75,31 +75,48 @@ void countingSort(int arr[], int n, int exp) {
     }
 }
 
+int getMax(int array[], int size) {
+    int max = array[0];
+    for (int i = 1; i < size; i++) {
+        if (array[i] > max) {
+            max = array[i];
+        }
+    }
+    return max;
+}
+
+
 // Binary Tree Sort
-struct Node* newNode(int item) {
-    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
-    temp->key = item;
-    temp->left = NULL;
-    temp->right = NULL;
-    return temp;
+struct TreeNode* createNode(int value) {
+    struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
 }
-void inOrder(struct Node* root, int* arr, int* index) {
+
+struct TreeNode* insertNode(struct TreeNode* root, int value) {
+    if (root == NULL) {
+        return createNode(value);
+    }
+
+    if (value < root->data) {
+        root->left = insertNode(root->left, value);
+    } else if (value > root->data) {
+        root->right = insertNode(root->right, value);
+    }
+
+    return root;
+}
+
+void inorderTraversal(struct TreeNode* root, int *ptr) {
     if (root != NULL) {
-        inOrder(root->left, arr, index);
-        arr[(*index)] = root->key;
-        (*index)++;
-        inOrder(root->right, arr, index);
+        inorderTraversal(root->left, ptr);
+        printf("%d ", root->data);
+        *ptr += 1;
+        if(*ptr % 9 == 0){
+            printf("\n");
+        }
+        inorderTraversal(root->right, ptr);
     }
-}
-void binaryTreeSort(int arr[], int n) {
-    struct Node* root = NULL;
-
-    for (int i = 0; i < n; i++) {
-        root = insert(root, arr[i]);
-    }
-
-    int index = 0;
-    inOrder(root, arr, &index);
-
-    freeTree(root);
 }

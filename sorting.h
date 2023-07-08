@@ -13,12 +13,15 @@ void quickSort(int vector[], int low, int high);
 // Radixsort
 void radixSort(int arr[], int n);
 void countingSort(int arr[], int n, int exp);
+int getMax(int array[], int size);
 
-// Binary Tree Sort
-struct Node {
-    int key;
-    struct Node* left;
-    struct Node* right;
+//Binary Tree structure
+struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
-void inOrder(struct Node* root, int* arr, int* index);
-void binaryTreeSort(int arr[], int n);
+
+struct TreeNode* createNode(int value);
+struct TreeNode* insertNode(struct TreeNode* root, int value);
+void inorderTraversal(struct TreeNode* root, int *ptr);
