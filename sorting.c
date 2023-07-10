@@ -111,7 +111,6 @@ struct TreeNode* insertNode(struct TreeNode* root, int value) {
         } else if (value > current->data) {
             current = current->right;
         } else {
-            // Handle duplicate values (if needed)
             return root;
         }
     }
