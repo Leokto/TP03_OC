@@ -40,5 +40,7 @@ int main(){
     if(option == 3){
     inorderTraversal(root, &counter);
     }
+
+    freeTree(root);
     return 0;
 }

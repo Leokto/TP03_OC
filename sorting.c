@@ -100,10 +100,26 @@ struct TreeNode* insertNode(struct TreeNode* root, int value) {
         return createNode(value);
     }
 
-    if (value < root->data) {
-        root->left = insertNode(root->left, value);
-    } else if (value > root->data) {
-        root->right = insertNode(root->right, value);
+    struct TreeNode* current = root;
+    struct TreeNode* parent = NULL;
+
+    while (current != NULL) {
+        parent = current;
+        
+        if (value < current->data) {
+            current = current->left;
+        } else if (value > current->data) {
+            current = current->right;
+        } else {
+            // Handle duplicate values (if needed)
+            return root;
+        }
+    }
+
+    if (value < parent->data) {
+        parent->left = createNode(value);
+    } else {
+        parent->right = createNode(value);
     }
 
     return root;
@@ -120,3 +136,11 @@ void inorderTraversal(struct TreeNode* root, int *ptr) {
         inorderTraversal(root->right, ptr);
     }
 }
+
+void freeTree(struct TreeNode* root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}   

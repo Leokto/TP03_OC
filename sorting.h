@@ -25,3 +25,4 @@ struct TreeNode {
 struct TreeNode* createNode(int value);
 struct TreeNode* insertNode(struct TreeNode* root, int value);
 void inorderTraversal(struct TreeNode* root, int *ptr);
+void freeTree(struct TreeNode* root);
