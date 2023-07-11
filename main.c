@@ -1,10 +1,11 @@
 #include "sorting.h"
 
 int main(){
-    int N = 10000, vector[N], counter = 0, option;
+    int N = 1000, vector[N], counter = 0, option;
     struct TreeNode* root = NULL;
-    root = insertNode(root, rand());
     srand(time(0));
+    root = insertNode(root, rand());
+    
     for(int i = 0; i < N; i++){
         vector[i] = rand();
     }
